@@ -27,6 +27,7 @@ struct route_table_entry *get_best_route(struct route_table_entry *rtable, int r
 		if( (rtable[i].mask & dest_ip) == rtable[i].prefix) {
 			if(best_index == -1 || ntohl(rtable[i].mask) > ntohl(rtable[best_index].mask)) {
 				best_index = i;
+			// return &rtable[i];
 			}
 
 		}
@@ -34,11 +35,12 @@ struct route_table_entry *get_best_route(struct route_table_entry *rtable, int r
 	if(best_index > 0) {
 		return &rtable[best_index];
 	}
-	else return NULL;
+	else 
+	return NULL;
 }
 
 int compare(const void *a, const void *b) {
-	return ((struct route_table_entry *)b)->mask - ((struct route_table_entry *)a)->mask;
+	return ((struct route_table_entry *)a)->mask - ((struct route_table_entry *)b)->mask;
 
 }
 // consider remaking this for efficiency
@@ -85,7 +87,7 @@ struct route_table_entry *parse_route_table(char *file, int *size) {
 
 	// print_table(rtable, entries);
 	qsort(rtable, entries, sizeof(struct route_table_entry), compare);
-	print_table(rtable, entries);
+	// print_table(rtable, entries);
 	free(line);
     fclose(input);
 
