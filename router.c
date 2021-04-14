@@ -42,16 +42,16 @@ int main(int argc, char *argv[])
 		uint8_t *if_mac = calloc(6, sizeof(uint8_t));
 		get_interface_mac(m.interface, if_mac);
 
-		// if (icmp_header) {
-		// 	if (icmp_header->type == ICMP_ECHO) {
-		// 		// verific daca e pt router
-		// 		if(ip_hdr->daddr == inet_addr(get_interface_ip(m.interface))) {
-		// 			send_icmp(ip_hdr->saddr, ip_hdr->daddr, if_mac, ether_hdr->ether_shost, ICMP_ECHOREPLY, icmp_header->code, m.interface, icmp_header->un.echo.id, icmp_header->un.echo.sequence );
-		// 			continue;
-		// 		}
+		if (icmp_header) {
+			if (icmp_header->type == ICMP_ECHO) {
+				// verific daca e pt router
+				if(ip_hdr->daddr == inet_addr(get_interface_ip(m.interface))) {
+					send_icmp(ip_hdr->saddr, ip_hdr->daddr, if_mac, ether_hdr->ether_shost, ICMP_ECHOREPLY, icmp_header->code, m.interface, icmp_header->un.echo.id, icmp_header->un.echo.sequence );
+					continue;
+				}
 				
-		// 	}
-		// }
+			}
+		}
 		// if (if_mac != ether_hdr->ether_dhost && if_mac != 0xffffff) {
 		// 	// drop packet
 		// 	continue;
@@ -116,9 +116,6 @@ int main(int argc, char *argv[])
 
 				memcpy(ether_hdr->ether_shost, if_mac, 6);
 
-				
-
-
 				send_packet(m.interface, &to_send);
 			}
 		}
@@ -129,15 +126,11 @@ int main(int argc, char *argv[])
 
 
 			// check if checksum is correct
-			if (ip_checksum(&ip_hdr, sizeof(struct iphdr)) != my_check) {
+			if (ip_checksum(ip_hdr, sizeof(struct iphdr)) != my_check) {
 				printf("wrong checksum, drop packet");
 				continue;
 			}
-			// update checksum
-			ip_hdr->check = ip_checksum(ip_hdr ,sizeof(struct iphdr));
-			
-			ip_hdr->ttl--;
-
+			ip_hdr->ttl--;	
 			// check if ttl is > 0
 			if (ip_hdr->ttl < 1) {
 				printf("ttl < 1, dropping packet\n");
@@ -145,6 +138,11 @@ int main(int argc, char *argv[])
 				send_icmp_error(ip_hdr->saddr, ip_hdr->daddr, ether_hdr->ether_dhost, ether_hdr->ether_shost, ICMP_TIME_EXCEEDED, 0, m.interface);
 				continue;
 			}
+			// update checksum
+			ip_hdr->check = ip_checksum(ip_hdr ,sizeof(struct iphdr));
+			
+
+			
 			//decrement ttl
 			
 			

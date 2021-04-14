@@ -2,4 +2,95 @@ Setting up interface: rr-0-1
 Setting up interface: r-0
 Setting up interface: r-1
 request
-wrong checksum, drop packetwrong checksum, drop packetwrong checksum, drop packetwrong checksum, drop packet
+aici
+192.168.1.2 de ad be ef 0 1 
+aici
+192.168.1.2 de ad be ef 0 1 
+192.168.0.2 de ad be ef 0 0 
+request
+request
+wrong checksum, drop packetaici
+192.168.1.2 de ad be ef 0 1 
+192.168.0.2 de ad be ef 0 0 
+192.0.1.2 ca fe ba be 1 0 
+coada goala
+request
+192.168.1.2 de ad be ef 0 1 
+192.168.0.2 de ad be ef 0 0 
+192.0.1.2 ca fe ba be 1 0 
+192.0.1.1 ca fe ba be 0 1 
+coada goala
+aici
+coada goala
+request
+coada goala
+request
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+request
+coada goala
+aici
+coada goala
+request
+request
+coada goala
+aici
+coada goala
+request
+request
+coada goala
+aici
+coada goala
+ttl < 1, dropping packet
+drop packetrequest
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
+aici
+coada goala
+request
+coada goala
